@@ -1,0 +1,316 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom button hover effects */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.btn-hover:hover::before {
+  left: 100%;
+}
+
+/* Typography improvements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus {
+  outline: 2px solid #00ffff;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-animate {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-cyan-400 {
+    color: #00ffff;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+/* Custom selection colors */
+::selection {
+  background-color: #00ffff;
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #00ffff;
+  color: #000000;
+}
+
+/* Loading state */
+.loading {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Subtle hover effects for interactive elements */
+a,
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ffff;
+}
+
+/* Skew text animation for "See It In Motion" */
+.skew-text {
+  animation: subtle-skew 4s ease-in-out infinite;
+}
+
+@keyframes subtle-skew {
+  0%,
+  100% {
+    transform: skew(0deg);
+  }
+  25% {
+    transform: skew(-0.5deg);
+  }
+  75% {
+    transform: skew(0.5deg);
+  }
+}
+
+/* Glitch border effect */
+.glitch-border-container {
+  position: relative;
+  padding: 4px;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+  background-size: 400% 400%;
+  animation: glitch-border 3s ease-in-out infinite;
+  border-radius: 12px;
+}
+
+.glitch-border-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, transparent, #00ffff, transparent, #ff00ff, transparent);
+  background-size: 400% 400%;
+  animation: glitch-border-inner 2s ease-in-out infinite reverse;
+  border-radius: 12px;
+  opacity: 0.7;
+}
+
+@keyframes glitch-border {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+}
+
+@keyframes glitch-border-inner {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.7;
+  }
+}
+
+/* Video container hover effects */
+.video-container {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.video-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1);
+}
+
+.video-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 60%, rgba(0, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.video-container:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced button hover for demo section */
+.demo-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.demo-button:hover::before {
+  left: 100%;
+}
+
+/* Subtle glow effect for the entire demo section */
+.demo-section {
+  position: relative;
+}
+
+.demo-section::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(0, 255, 255, 0.03) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Reduced motion support for new animations */
+@media (prefers-reduced-motion: reduce) {
+  .skew-text {
+    animation: none;
+  }
+
+  .glitch-border-container,
+  .glitch-border-container::before {
+    animation: none;
+    background: linear-gradient(45deg, #00ffff, transparent);
+  }
+
+  .video-container:hover {
+    transform: none;
+  }
+}
+
+/* Mobile optimizations for demo section */
+@media (max-width: 768px) {
+  .glitch-border-container {
+    padding: 2px;
+  }
+
+  .video-container .text-4xl {
+    font-size: 2rem;
+  }
+
+  .video-container .text-2xl {
+    font-size: 1.5rem;
+  }
+}
